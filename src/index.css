@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; background: #050505; }
+body { margin: 0; background: #050505; color: #fff; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: #fff; color: #000; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Hero orb: lightweight CSS 3D (no WebGL, easy on mobile batteries) */
+.orb-wrap { perspective: 900px; width: min(78vw, 460px); aspect-ratio: 1; justify-self: center; }
+.orb-tilt { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .25s ease-out; }
+.orb { position: absolute; inset: 14%; border-radius: 50%; animation: float 7s ease-in-out infinite;
+  background: radial-gradient(circle at 32% 28%, #fff 0, #e4e4e4 14%, #9a9a9a 42%, #2c2c2c 72%, #050505 100%);
+  box-shadow: 0 70px 110px -40px rgba(255,255,255,.22), inset -34px -44px 80px rgba(0,0,0,.75); }
+.ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); }
+.ring::after { content: ''; position: absolute; top: -3px; left: 50%; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px #fff; }
+.r1 { animation: spinA 16s linear infinite; }
+.r2 { inset: 7%; animation: spinB 24s linear infinite; }
+@keyframes float { 50% { transform: translateY(-14px); } }
+@keyframes spinA { from { transform: rotateX(72deg) rotateZ(0); } to { transform: rotateX(72deg) rotateZ(360deg); } }
+@keyframes spinB { from { transform: rotateY(72deg) rotateZ(0); } to { transform: rotateY(72deg) rotateZ(-360deg); } }
+
+.marquee { display: flex; width: max-content; padding: .5rem 0; animation: mq 38s linear infinite; }
+.marquee-rev { animation-direction: reverse; }
+@keyframes mq { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
